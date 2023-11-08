@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharp_Net_module1_1_4_lab
 {
@@ -23,7 +18,6 @@ namespace CSharp_Net_module1_1_4_lab
         struct Computer
         {
             public ComputerType type;
-            public int count;
             public int CPUCores;
             public float CPUFrequency;
             public int memory;
@@ -38,140 +32,44 @@ namespace CSharp_Net_module1_1_4_lab
 
             // 4) set the size of every array in jagged array (number of computers)
 
-            for (int i = 0; i < departments.GetLength(0); i++)
-            {
-                departments[i] = new Computer[3];
-            }
+            departments[0] = new Computer[5];
+            departments[1] = new Computer[3];
+            departments[2] = new Computer[5];
+            departments[3] = new Computer[4];
 
             // 5) initialize array
             // Note: use loops and if-else statements
 
-            for (int i = 0; i < departments.GetLength(0); i++)
+
+            for (int i = 0; i < departments.GetLength(0); i++) 
             {
-                if (i == 0)
-                    for (int j = 0; j < departments[i].Length; j++)
+                for(int j = 0; j < departments[i].Length; j++)
+                {
+                    if((i == 0 && j < 2) || (i == 2 && j < 3) || (i == 3 && j < 1)) //Desktops
                     {
-                        if (j == 0)
-                        {
-                            departments[i][j].type = ComputerType.Desktop;
-                            departments[i][j].count = 2;
-                            departments[i][j].CPUCores = 4;
-                            departments[i][j].CPUFrequency = 2.5f;
-                            departments[i][j].memory = 6;
-                            departments[i][j].storage = 500;
-                        }
-                        if (j == 1)
-                        {
-                            departments[i][j].type = ComputerType.Laptop;
-                            departments[i][j].count = 2;
-                            departments[i][j].CPUCores = 2;
-                            departments[i][j].CPUFrequency = 1.7f;
-                            departments[i][j].memory = 4;
-                            departments[i][j].storage = 250;
-                        }
-                        if (j == 2)
-                        {
-                            departments[i][j].type = ComputerType.Server;
-                            departments[i][j].count = 1;
-                            departments[i][j].CPUCores = 8;
-                            departments[i][j].CPUFrequency = 3.0f;
-                            departments[i][j].memory = 16;
-                            departments[i][j].storage = 2000;
-                        }
+                        departments[i][j].type = ComputerType.Desktop;
+                        departments[i][j].CPUCores = 4;
+                        departments[i][j].CPUFrequency = 2.5f;
+                        departments[i][j].memory = 6;
+                        departments[i][j].storage = 500;
                     }
-                if (i == 1)
-                    for (int j = 0; j < departments[i].Length; j++)
+                    else if ((i == 0 && j >= 2 && j < 4) || (i == 1 && j < 3) || (i == 2 && j >= 3 && j < 5) || (i == 3 && j == 1)) //Laptops
                     {
-                        if (j == 0)
-                        {
-                            departments[i][j].type = ComputerType.Desktop;
-                            departments[i][j].count = 0;
-                            departments[i][j].CPUCores = 4;
-                            departments[i][j].CPUFrequency = 2.5f;
-                            departments[i][j].memory = 6;
-                            departments[i][j].storage = 500;
-                        }
-                        if (j == 1)
-                        {
-                            departments[i][j].type = ComputerType.Laptop;
-                            departments[i][j].count = 3;
-                            departments[i][j].CPUCores = 2;
-                            departments[i][j].CPUFrequency = 1.7f;
-                            departments[i][j].memory = 4;
-                            departments[i][j].storage = 250;
-                        }
-                        if (j == 2)
-                        {
-                            departments[i][j].type = ComputerType.Server;
-                            departments[i][j].count = 0;
-                            departments[i][j].CPUCores = 8;
-                            departments[i][j].CPUFrequency = 3.0f;
-                            departments[i][j].memory = 16;
-                            departments[i][j].storage = 2000;
-                        }
+                        departments[i][j].type = ComputerType.Laptop;
+                        departments[i][j].CPUCores = 2;
+                        departments[i][j].CPUFrequency = 1.7f;
+                        departments[i][j].memory = 4;
+                        departments[i][j].storage = 250;
                     }
-                if (i == 2)
-                    for (int j = 0; j < departments[i].Length; j++)
+                    else //Servers
                     {
-                        if (j == 0)
-                        {
-                            departments[i][j].type = ComputerType.Desktop;
-                            departments[i][j].count = 3;
-                            departments[i][j].CPUCores = 4;
-                            departments[i][j].CPUFrequency = 2.5f;
-                            departments[i][j].memory = 6;
-                            departments[i][j].storage = 500;
-                        }
-                        if (j == 1)
-                        {
-                            departments[i][j].type = ComputerType.Laptop;
-                            departments[i][j].count = 2;
-                            departments[i][j].CPUCores = 2;
-                            departments[i][j].CPUFrequency = 1.7f;
-                            departments[i][j].memory = 4;
-                            departments[i][j].storage = 250;
-                        }
-                        if (j == 2)
-                        {
-                            departments[i][j].type = ComputerType.Server;
-                            departments[i][j].count = 0;
-                            departments[i][j].CPUCores = 8;
-                            departments[i][j].CPUFrequency = 3.0f;
-                            departments[i][j].memory = 16;
-                            departments[i][j].storage = 2000;
-                        }
+                        departments[i][j].type = ComputerType.Server;
+                        departments[i][j].CPUCores = 8;
+                        departments[i][j].CPUFrequency = 3.0f;
+                        departments[i][j].memory = 16;
+                        departments[i][j].storage = 2000;
                     }
-                if (i == 3)
-                    for (int j = 0; j < departments[i].Length; j++)
-                    {
-                        if (j == 0)
-                        {
-                            departments[i][j].type = ComputerType.Desktop;
-                            departments[i][j].count = 1;
-                            departments[i][j].CPUCores = 4;
-                            departments[i][j].CPUFrequency = 2.5f;
-                            departments[i][j].memory = 6;
-                            departments[i][j].storage = 500;
-                        }
-                        if (j == 1)
-                        {
-                            departments[i][j].type = ComputerType.Laptop;
-                            departments[i][j].count = 1;
-                            departments[i][j].CPUCores = 2;
-                            departments[i][j].CPUFrequency = 1.7f;
-                            departments[i][j].memory = 4;
-                            departments[i][j].storage = 250;
-                        }
-                        if (j == 2)
-                        {
-                            departments[i][j].type = ComputerType.Server;
-                            departments[i][j].count = 2;
-                            departments[i][j].CPUCores = 8;
-                            departments[i][j].CPUFrequency = 3.0f;
-                            departments[i][j].memory = 16;
-                            departments[i][j].storage = 2000;
-                        }
-                    }
+                }
             }
 
             // 6) count total number of every type of computers
@@ -188,10 +86,10 @@ namespace CSharp_Net_module1_1_4_lab
             {
                 for (int j = 0; j < departments[i].Length; j++)
                 {
-                    if (departments[i][j].type == ComputerType.Desktop) desktops += departments[i][j].count;
-                    if (departments[i][j].type == ComputerType.Laptop) laptops += departments[i][j].count;
-                    if (departments[i][j].type == ComputerType.Server) servers += departments[i][j].count;
-                    if (departments[i][j].count != 0) computers += departments[i][j].count;
+                    if (departments[i][j].type == ComputerType.Desktop) desktops ++;
+                    if (departments[i][j].type == ComputerType.Laptop) laptops++;
+                    if (departments[i][j].type == ComputerType.Server) servers++;
+                    computers++;
                 }
             }
 
@@ -206,14 +104,19 @@ namespace CSharp_Net_module1_1_4_lab
             // find position of this computer in array (indexes)
             // Note: use loops and if-else statements
 
-            int largestHDDindex = 0;
+            int largestHDDindex;
 
-            for (int i = 1; i < departments[0].Length; i++)
+            for (int i = 0; i < departments.GetLength(0); i++)
             {
-                if (departments[0][i].storage > departments[0][largestHDDindex].storage) largestHDDindex = i;
+                largestHDDindex = 0;
+                for (int j = 1; j < departments[i].Length; j++)
+                {
+                    if (departments[i][j].storage > departments[i][largestHDDindex].storage) largestHDDindex = j;
+                }
+                Console.WriteLine(i + 1 + " department - " + departments[i][largestHDDindex].type + " has the lagrest storage.");
             }
 
-            Console.WriteLine(departments[0][largestHDDindex].type + " has the lagrest storage.");
+
             Console.WriteLine();
 
             // 9) find computer with the lowest productivity (CPU and memory) - 
@@ -222,17 +125,22 @@ namespace CSharp_Net_module1_1_4_lab
             // Note: use loops and if-else statements
             // Note: use logical oerators in statement conditions
 
-            int worstCPUindex = 0;
-            int worstMemoryIndex = 0;
+            int worstCPUindex;
+            int worstMemoryIndex;
 
-            for (int i = 1; i < departments[0].Length; i++)
+            for (int i = 0; i < departments.GetLength(0); i++)
             {
-                if (departments[0][i].CPUCores < departments[0][worstCPUindex].CPUCores) worstCPUindex = i;
-                if (departments[0][i].memory < departments[0][worstMemoryIndex].memory) worstMemoryIndex = i;
+                worstCPUindex = 0;
+                worstMemoryIndex = 0;
+                for (int j = 1; j < departments[i].Length; j++)
+                {
+                    if (departments[i][j].CPUCores < departments[i][worstCPUindex].CPUCores) worstCPUindex = j;
+                    if (departments[i][j].memory < departments[i][worstMemoryIndex].memory) worstMemoryIndex = j;
+                }
+                Console.WriteLine(i + 1 + " department - " + departments[i][worstCPUindex].type + " has the worst CPU.");
+                Console.WriteLine(i + 1 + " department - " + departments[i][worstMemoryIndex].type + " has the worst memory.");
             }
 
-            Console.WriteLine(departments[0][worstCPUindex].type + " has the worst CPU.");
-            Console.WriteLine(departments[0][worstMemoryIndex].type + " has the worst memory.");
             Console.WriteLine();
 
             // 10) make desktop upgrade: change memory up to 8
@@ -256,7 +164,7 @@ namespace CSharp_Net_module1_1_4_lab
                 if (i == 3) Console.WriteLine("Forth department");
                 for (int j = 0; j < departments[i].Length; j++)
                 {
-                    Console.Write(departments[i][j].type + "s: count - " + departments[i][j].count + " (" + departments[i][j].CPUCores + " cores, " + departments[i][j].CPUFrequency + " CPUFrequency, " + departments[i][j].memory + "GB memory, " + departments[i][j].storage + "GB storage)");
+                    Console.Write(departments[i][j].type + "s: (" + departments[i][j].CPUCores + " cores, " + departments[i][j].CPUFrequency + " CPUFrequency, " + departments[i][j].memory + "GB memory, " + departments[i][j].storage + "GB storage)");
                     Console.WriteLine();
                 }
                 Console.WriteLine();
