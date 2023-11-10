@@ -7,6 +7,8 @@ namespace CSharp_Net_module1_2_1_lab
     {
         static void Main(string[] args)
         {
+            string[] Name = new string[5];
+
             // 8) declare 2 objects. Use default and paremeter constructors
             LibraryUser user1 = new LibraryUser(), user2 = new LibraryUser("Maria", "Ivanenko", "+380447777777", 2);
             Console.WriteLine("User1 " + user1.FirstName + " " + user1.LastName);
@@ -28,8 +30,9 @@ namespace CSharp_Net_module1_2_1_lab
             Console.WriteLine("user2 books " + user2[0] + "\n" + user2[1]);
             Console.WriteLine("Remove Sherlock Holmes");
             user2.RemoveBook("Sherlock Holmes");
+            user2.AddBook("Dorian Gray");
             Console.WriteLine("user2.BooksCount "+user2.BooksCount());
-
+            Console.Read();
         }
     }
 }
