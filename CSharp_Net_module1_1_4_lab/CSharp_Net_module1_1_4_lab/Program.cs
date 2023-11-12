@@ -1,9 +1,20 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 
 namespace CSharp_Net_module1_1_4_lab
 {
     class Program
     {
+        static void Info(int desktopCount, int laptopCount, int serverCount)
+        {
+            if (desktopCount != 0)
+                Console.Write(desktopCount + " desktop(s) ");
+            if (laptopCount != 0)
+                Console.Write(laptopCount + " laptop(s) ");
+            if (serverCount != 0)
+                Console.Write(serverCount + " server(s) ");
+        }
+
         // 1) declare enum ComputerType
 
         enum ComputerType
@@ -26,9 +37,35 @@ namespace CSharp_Net_module1_1_4_lab
 
         static void Main(string[] args)
         {
+
             // 3) declare jagged array of computers size 4 (4 departments)
 
             Computer[][] departments = new Computer[4][];
+
+            Computer desktop = new Computer()
+            {
+                type = ComputerType.Desktop,
+                CPUCores = 4,
+                CPUFrequency = 2.5f,
+                memory = 6,
+                storage = 500,
+            };
+            Computer laptop = new Computer()
+            {
+                type = ComputerType.Laptop,
+                CPUCores = 2,
+                CPUFrequency = 1.7f,
+                memory = 4,
+                storage = 250,
+            };
+            Computer server = new Computer()
+            {
+                type = ComputerType.Server,
+                CPUCores = 8,
+                CPUFrequency = 3.0f,
+                memory = 16,
+                storage = 2000,
+            };
 
             // 4) set the size of every array in jagged array (number of computers)
 
@@ -40,34 +77,38 @@ namespace CSharp_Net_module1_1_4_lab
             // 5) initialize array
             // Note: use loops and if-else statements
 
-
-            for (int i = 0; i < departments.GetLength(0); i++) 
+            for (int i = 0; i < departments.GetLength(0); i++)
             {
-                for(int j = 0; j < departments[i].Length; j++)
+                for (int j = 0; j < departments[i].Length; j++)
                 {
-                    if((i == 0 && j < 2) || (i == 2 && j < 3) || (i == 3 && j < 1)) //Desktops
+
+                    switch (i)
                     {
-                        departments[i][j].type = ComputerType.Desktop;
-                        departments[i][j].CPUCores = 4;
-                        departments[i][j].CPUFrequency = 2.5f;
-                        departments[i][j].memory = 6;
-                        departments[i][j].storage = 500;
-                    }
-                    else if ((i == 0 && j >= 2 && j < 4) || (i == 1 && j < 3) || (i == 2 && j >= 3 && j < 5) || (i == 3 && j == 1)) //Laptops
-                    {
-                        departments[i][j].type = ComputerType.Laptop;
-                        departments[i][j].CPUCores = 2;
-                        departments[i][j].CPUFrequency = 1.7f;
-                        departments[i][j].memory = 4;
-                        departments[i][j].storage = 250;
-                    }
-                    else //Servers
-                    {
-                        departments[i][j].type = ComputerType.Server;
-                        departments[i][j].CPUCores = 8;
-                        departments[i][j].CPUFrequency = 3.0f;
-                        departments[i][j].memory = 16;
-                        departments[i][j].storage = 2000;
+                        case 0:
+                            {
+                                if (j < 2) departments[i][j] = desktop;
+                                else if (j < 4) departments[i][j] = laptop;
+                                else departments[i][j] = server;
+                                break;
+                            }
+                        case 1:
+                            {
+                                if (j < 3) departments[i][j] = laptop;
+                                break;
+                            }
+                        case 2:
+                            {
+                                if (j < 3) departments[i][j] = desktop;
+                                else departments[i][j] = laptop;
+                                break;
+                            }
+                        case 3:
+                            {
+                                if (j < 1) departments[i][j] = desktop;
+                                else if (j < 2) departments[i][j] = laptop;
+                                else departments[i][j] = server;
+                                break;
+                            }
                     }
                 }
             }
@@ -86,7 +127,7 @@ namespace CSharp_Net_module1_1_4_lab
             {
                 for (int j = 0; j < departments[i].Length; j++)
                 {
-                    if (departments[i][j].type == ComputerType.Desktop) desktops ++;
+                    if (departments[i][j].type == ComputerType.Desktop) desktops++;
                     if (departments[i][j].type == ComputerType.Laptop) laptops++;
                     if (departments[i][j].type == ComputerType.Server) servers++;
                     computers++;
@@ -156,20 +197,39 @@ namespace CSharp_Net_module1_1_4_lab
                 }
             }
 
+            int desktopCount, laptopCount, serverCount;
+
             for (int i = 0; i < departments.GetLength(0); i++)
             {
-                if (i == 0) Console.WriteLine("First department");
-                if (i == 1) Console.WriteLine("Second department");
-                if (i == 2) Console.WriteLine("Third department");
-                if (i == 3) Console.WriteLine("Forth department");
+                desktopCount = 0; laptopCount = 0; serverCount = 0;
                 for (int j = 0; j < departments[i].Length; j++)
                 {
-                    Console.Write(departments[i][j].type + "s: (" + departments[i][j].CPUCores + " cores, " + departments[i][j].CPUFrequency + " CPUFrequency, " + departments[i][j].memory + "GB memory, " + departments[i][j].storage + "GB storage)");
-                    Console.WriteLine();
+                    if (departments[i][j].type == ComputerType.Desktop) desktopCount++;
+                    if (departments[i][j].type == ComputerType.Laptop) laptopCount++;
+                    if (departments[i][j].type == ComputerType.Server) serverCount++;
+                }
+                if (i == 0)
+                {
+                    Console.Write("First department - ");
+                    Info(desktopCount, laptopCount, serverCount);
+                }
+                if (i == 1)
+                {
+                    Console.Write("Second department - ");
+                    Info(desktopCount, laptopCount, serverCount);
+                }
+                if (i == 2)
+                {
+                    Console.Write("Third department - ");
+                    Info(desktopCount, laptopCount, serverCount);
+                }
+                if (i == 3)
+                {
+                    Console.Write("Forth department - ");
+                    Info(desktopCount, laptopCount, serverCount);
                 }
                 Console.WriteLine();
             }
-
             Console.ReadLine();
         }
 
