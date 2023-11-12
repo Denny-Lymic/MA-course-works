@@ -12,8 +12,8 @@ namespace CSharp_Net_module1_2_1_lab
             // 8) declare 2 objects. Use default and paremeter constructors
             LibraryUser user1 = new LibraryUser(), user2 = new LibraryUser("Maria", "Ivanenko", "+380447777777", 2);
             Console.WriteLine("User1 " + user1.FirstName + " " + user1.LastName);
-            Console.WriteLine ("User2 " + user2.FirstName + " " + user2.LastName);
-                
+            Console.WriteLine("User2 " + user2.FirstName + " " + user2.LastName);
+
             // 9) do operations with books for all users: run all methods for both objects
             Console.WriteLine("User 1: add Harry Potter");
             user1.AddBook("Harry Potter");
@@ -29,9 +29,15 @@ namespace CSharp_Net_module1_2_1_lab
             Console.WriteLine("user2.BooksCount " + user2.BooksCount());
             Console.WriteLine("user2 books " + user2[0] + "\n" + user2[1]);
             Console.WriteLine("Remove Sherlock Holmes");
-            user2.RemoveBook("Sherlock Holmes");
             user2.AddBook("Dorian Gray");
-            Console.WriteLine("user2.BooksCount "+user2.BooksCount());
+            user2.AddBook("Thomas Shelby");
+            user2.RemoveBook("Dorian Gray");
+            Console.WriteLine("user2.BooksCount " + user2.BooksCount());
+            Console.WriteLine(user2.BookInfo(1));
+            Console.WriteLine(user2.BookInfo(2));
+            Console.WriteLine(user2.BookInfo(3));
+            Console.WriteLine(user2.BookInfo(4));
+            Console.WriteLine(user2.BookInfo(5));
             Console.Read();
         }
     }

@@ -80,7 +80,6 @@ namespace CSharp_Net_module1_2_1_lab
             {
                 i++;
                 if (i + 1 == BookLimit) return;
-
             }
             bookList[i] = bookName;
             bookCount++;
@@ -92,13 +91,23 @@ namespace CSharp_Net_module1_2_1_lab
             {
                 i++;
                 if (i + 1 == BookLimit) return;
-
             }
             bookList[i] = null;
             bookCount--;
         }
+
         public int BooksCount() { return bookCount; }
-        public string BookInfo(int index) { return this[index]; }
+
+        public string BookInfo(int index)
+        {
+            int curIndex = 0;
+            for (int i = 0; i < BookLimit; i++)
+            {
+                if (bookList[i] != null) curIndex++;
+                if (curIndex == index) return bookList[i];                      
+            }
+            return "Wrong index";
+        }
 
     }
 
