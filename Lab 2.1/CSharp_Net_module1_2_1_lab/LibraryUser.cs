@@ -76,21 +76,30 @@ namespace CSharp_Net_module1_2_1_lab
         public void AddBook(string bookName)
         {
             int i = 0;
+            if (bookCount == BookLimit)
+            {               
+                Console.WriteLine(FirstName + " " + LastName + " has no more space for books!");
+                return;
+            }
             while (bookList[i] != null)
             {
                 i++;
-                if (i + 1 == BookLimit) return;
             }
             bookList[i] = bookName;
             bookCount++;
         }
+
         public void RemoveBook(string bookName)
         {
             int i = 0;
             while (bookList[i] != bookName)
             {
                 i++;
-                if (i + 1 == BookLimit) return;
+                if (i + 1 == BookLimit)
+                {
+                    Console.WriteLine("There is no " + bookName);
+                    return;
+                }
             }
             bookList[i] = null;
             bookCount--;
