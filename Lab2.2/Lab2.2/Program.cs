@@ -12,9 +12,9 @@ try
     box.Draw("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a tortor eleifend, accumsan est a, imperdiet tellus. Maecenas lobortis nisl diam, sit amet commodo lectus congue eget. Integer molestie maximus luctus. Cras sit amet volutpat augue, a tristique metus. Vivamus posuere neque id est scelerisque varius. Etiam sodales, nisl in interdum pretium, lacus nunc condimentum risus, in semper tortor risus non ipsum. Proin faucibus massa eu massa pretium ullamcorper. Phasellus quis dui venenatis, malesuada justo quis, tincidunt sem. In et nulla quis arcu ultrices finibus nec nec purus. Nunc porttitor tristique sem, a volutpat felis vehicula at.",
              x: 4,
              y: 4,
-             width: 10,
-             height: 10,
-             symbol: '(');
+             width: 50,
+             height: 25,
+             symbol: '+');
 
     Console.WriteLine("Press any key...");
     Console.ReadLine(); 
