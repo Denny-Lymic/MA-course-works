@@ -59,10 +59,19 @@ namespace Hello_Class_stud
 
         //Implement Morse_matrix operator +
 
-        /*public static char operator +(Morse_matrix obj, char c)
+        public static Morse_matrix operator +(Morse_matrix obj, int offset_key)
         {
-            return 'a';
-        }*/
+            Morse_matrix returnMatrix = new Morse_matrix();
+            for (int ii = 0; ii < Size1; ii++)
+                for (int jj = 0; jj < Size_2; jj++)
+                    returnMatrix[ii, jj] = obj[ii, jj];
+            int off = Size_2 - offset_key;
+            for (int jj = 0; jj < off; jj++)
+                returnMatrix[1, jj] = returnMatrix[1, jj + offset_key];
+            for (int jj = off; jj < Size_2; jj++)
+                returnMatrix[1, jj] = obj[1, jj - off];
+            return returnMatrix;
+        }
 
         //**************************************
 
@@ -135,8 +144,20 @@ namespace Hello_Class_stud
 
         public void Res_beep(string result)
         {
-            Console.WriteLine(result);
-        }
-
+            for( int i = 0; i < result.Length; i++)
+            {
+                if (result[i] == '.')
+                {
+                    Console.Beep(700, 200);
+                    continue;
+                }
+                if (result[i] == '-')
+                {
+                    Console.Beep(700, 500);
+                    continue;
+                }
+                Thread.Sleep(200);
+            }
+        }       
     }
 }

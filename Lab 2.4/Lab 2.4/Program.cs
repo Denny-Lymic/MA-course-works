@@ -118,6 +118,11 @@ static void Str_matr_comp()
     if (code_tbl1.Equals(code_tbl2))
         Console.WriteLine("True");
     else Console.WriteLine("False");
+
+    Console.WriteLine();
+    Morse_matrix m = code_tbl1 + 5;
+    code_tbl1.Write_matrix();
+    m.Write_matrix();
 }
 #endregion
 
