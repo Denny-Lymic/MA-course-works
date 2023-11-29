@@ -35,13 +35,14 @@ namespace CSharp_Net_module1_1_4_lab
             public int storage;
         }
 
+
+
         static void Main(string[] args)
         {
 
             // 3) declare jagged array of computers size 4 (4 departments)
 
             Computer[][] departments = new Computer[4][];
-
             Computer desktop = new Computer()
             {
                 type = ComputerType.Desktop,
@@ -67,6 +68,15 @@ namespace CSharp_Net_module1_1_4_lab
                 storage = 2000,
             };
 
+            int[,] settingMatrix = new int[,] 
+            { 
+                { 2, 2, 1 }, // 2d, 2l, 1s
+                { 0, 3, 0 }, // 3l
+                { 3, 2, 0 }, // 3d, 2l
+                { 1, 1, 2 }  // 1d, 1l, 2s
+            };
+            int currJ;
+
             // 4) set the size of every array in jagged array (number of computers)
 
             departments[0] = new Computer[5];
@@ -79,37 +89,21 @@ namespace CSharp_Net_module1_1_4_lab
 
             for (int i = 0; i < departments.GetLength(0); i++)
             {
-                for (int j = 0; j < departments[i].Length; j++)
+                currJ = 0;
+                for (int j = 0; j < settingMatrix[i, 0]; j++)
                 {
-
-                    switch (i)
-                    {
-                        case 0:
-                            {
-                                if (j < 2) departments[i][j] = desktop;
-                                else if (j < 4) departments[i][j] = laptop;
-                                else departments[i][j] = server;
-                                break;
-                            }
-                        case 1:
-                            {
-                                if (j < 3) departments[i][j] = laptop;
-                                break;
-                            }
-                        case 2:
-                            {
-                                if (j < 3) departments[i][j] = desktop;
-                                else departments[i][j] = laptop;
-                                break;
-                            }
-                        case 3:
-                            {
-                                if (j < 1) departments[i][j] = desktop;
-                                else if (j < 2) departments[i][j] = laptop;
-                                else departments[i][j] = server;
-                                break;
-                            }
-                    }
+                    departments[i][currJ] = desktop;
+                    currJ++;
+                }
+                for (int j = 0; j < settingMatrix[i, 1]; j++)
+                {
+                    departments[i][currJ] = laptop;
+                    currJ++;
+                }
+                for (int j = 0; j < settingMatrix[i, 2]; j++)
+                {
+                    departments[i][currJ] = server;
+                    currJ++;
                 }
             }
 
