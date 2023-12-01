@@ -61,15 +61,9 @@ namespace Hello_Class_stud
 
         public static Morse_matrix operator +(Morse_matrix obj, int offset_key)
         {
-            Morse_matrix returnMatrix = new Morse_matrix();
-            for (int ii = 0; ii < Size1; ii++)
-                for (int jj = 0; jj < Size_2; jj++)
-                    returnMatrix[ii, jj] = obj[ii, jj];
-            int off = Size_2 - offset_key;
-            for (int jj = 0; jj < off; jj++)
-                returnMatrix[1, jj] = returnMatrix[1, jj + offset_key];
-            for (int jj = off; jj < Size_2; jj++)
-                returnMatrix[1, jj] = obj[1, jj - off];
+            int newOffset_key = obj.offset_key + offset_key;
+            Morse_matrix returnMatrix = new Morse_matrix(newOffset_key);
+            
             return returnMatrix;
         }
 
