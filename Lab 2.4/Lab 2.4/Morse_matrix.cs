@@ -62,8 +62,11 @@ namespace Hello_Class_stud
         public static Morse_matrix operator +(Morse_matrix obj, int offset_key)
         {
             int newOffset_key = obj.offset_key + offset_key;
+            if (newOffset_key > 34) newOffset_key -= Size2;
+            else if (newOffset_key < 0) newOffset_key += Size2;
+
             Morse_matrix returnMatrix = new Morse_matrix(newOffset_key);
-            
+
             return returnMatrix;
         }
 
