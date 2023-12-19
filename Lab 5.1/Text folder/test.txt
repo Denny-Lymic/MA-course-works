@@ -1,0 +1,5 @@
+4 cores, 4,4 Mhz, 16 GB, 1000 GB
+4 cores, 4 Mhz, 12 GB, 960 GB
+6 cores, 4,4 Mhz, 32 GB, 800 GB
+3 cores, 3,6 Mhz, 8 GB, 500 GB
+12 cores, 2,6 Mhz, 64 GB, 3000 GB
